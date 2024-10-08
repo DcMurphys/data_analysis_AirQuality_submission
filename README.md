@@ -2,8 +2,8 @@
 
 ## Setup Environment - Anaconda
 ```
-conda create --name main python=3.11.3
-conda activate main
+conda create --name dashboard python=3.11.3
+conda activate dashboard
 pip install -r requirements.txt
 ```
 
