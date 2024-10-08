@@ -129,7 +129,7 @@ max_time = all_record_df['record_time'].max()
 
 with st.sidebar:
     # Insert application logo
-    st.image("logo.png", width=128)
+    st.image("dashboard/logo.png", width=128)
 
     # Get start_time & end_time from date_input
     start_time, end_time = st.date_input(
