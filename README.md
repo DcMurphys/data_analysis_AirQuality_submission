@@ -1,13 +1,14 @@
-# Air Quality Monitoring Dashboard ✨
+# Air Quality Monitoring Dashboard 
+
+## Setup Environment - Anaconda
+conda create --name main python=3.11.3
+conda activate main
+pip install -r requirements.txt
 
 ## Setup Environment - Shell/Terminal (Installing Dependencies)
-```
-conda create --name main.ds python=3.9
-conda activate main-ds
-py -m pip install -r /data_analysis_AQI_submission/requirements.txt
-```
+pipenv install
+pipenv shell
+pip install -r requirements.txt
 
 ## Run streamlit app
-```
-py -m streamlit run dashboard.py
-```
+streamlit run main.py 
