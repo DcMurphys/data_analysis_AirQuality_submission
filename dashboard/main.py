@@ -114,7 +114,7 @@ def get_AQI_status(x):
 
 
 # Loading dataset 'main_data.csv' into new dataframe 'all_record_df'
-all_record_df = pd.read_csv("main_data.csv")
+all_record_df = pd.read_csv("dashboard/main_data.csv")
 
 # Create time widget for data filtering 
 datetime_columns = ["record_time"]
