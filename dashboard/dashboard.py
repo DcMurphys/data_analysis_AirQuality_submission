@@ -96,12 +96,12 @@ def create_daily_AQIresult_CO_df(df):
     return daily_AQIresult_CO_df
 
 def create_yearly_AQI_max_records_df(df):
-    yearly_AQI_max_record_df = df.resample(rule='Y', on='record_time').agg({
+    yearly_AQI_max_records_df = df.resample(rule='Y', on='record_time').agg({
         "station" : "nunique",
         "AQI_result" : "max"
     }).reset_index()
 
-    return yearly_AQI_max_record_df 
+    return yearly_AQI_max_records_df 
 
 # Determining the AQI Status using function 'get_AQI_status '
 def get_AQI_status(x):
