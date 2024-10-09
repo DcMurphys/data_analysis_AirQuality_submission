@@ -205,9 +205,7 @@ st.pyplot(fig)
 # Year with the Highest Record of AQI Score So Far
 fig, ax = plt.subplots()
 
-colors_max = ["#FF6500", "#FF6500", "#FF6500", "#FF6500", "#FF6500"]
-
-sns.barplot(x="AQI_result", y="record_time", data=yearly_AQI_max_records_df.head(), palette=colors_max)
+sns.barplot(x="AQI_result", y="record_time", data=yearly_AQI_max_records_df.head())
 
 ax.set_ylabel(None)
 ax.set_xlabel(None)
