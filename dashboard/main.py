@@ -245,6 +245,17 @@ with tab1:
         plt.ylabel('Particulate Matter in µg/m3')
         st.pyplot(fig)
 
+        fig, ax = plt.subplots(figsize=(15,5))
+        ax.yaxis.set_major_formatter(ticker.EngFormatter())
+        for each in columns_plot:
+            sns.lineplot(data=monthly_record_df, x='record_time', y=each, label=str(each), errorbar=None)
+        plt.legend(loc='upper left', labels=['PM2.5','PM10'])
+        plt.tight_layout()
+        plt.tick_params(axis='x', rotation=45)
+        plt.xlabel('Month-on-Month')
+        plt.ylabel('Particulate Matter Score in µg/m3')
+        plt.show()
+
 
 # SO2 Particle Tracking
 with tab2:
