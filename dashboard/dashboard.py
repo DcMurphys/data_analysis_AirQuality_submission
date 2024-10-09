@@ -95,6 +95,14 @@ def create_daily_AQIresult_CO_df(df):
 
     return daily_AQIresult_CO_df
 
+def create_yearly_AQI_max_record_df(df):
+    yearly_AQI_max_record_df = all_record_df.resample(rule='Y', on='record_time').agg({
+        "station" : "nunique",
+        "AQI_result" : "max"
+    }).reset_index()
+
+    return yearly_AQI_max_record_df 
+
 # Determining the AQI Status using function 'get_AQI_status '
 def get_AQI_status(x):
     if x <= 50:
@@ -153,6 +161,7 @@ daily_AQIresult_PM10_df = create_daily_AQIresult_PM10_df(main_df)
 daily_AQIresult_SO2_df = create_daily_AQIresult_SO2_df(main_df)
 daily_AQIresult_NO2_df = create_daily_AQIresult_NO2_df(main_df)
 daily_AQIresult_CO_df = create_daily_AQIresult_CO_df(main_df)
+yearly_AQI_max_records_df = create_yearly_AQI_max_records_df(main_df) 
 
 
 # Dashboard Title
@@ -164,7 +173,7 @@ st.caption('''Welcome to the Air Quality Monitoring Dashboard App! This app will
 ''')
 
 
-# Air Quality Index (AQI) Tracking
+
 st.header("Air Quality Index (AQI) Score")
 col1, col2, col3 = st.columns(3, gap="small")
 
@@ -181,7 +190,7 @@ with col3:
     AQI_result_status = get_AQI_status(AQI_result_median)
     st.metric("Overall Status", value=AQI_result_status)
 
-
+# Air Quality Index (AQI) Tracking
 fig, ax = plt.subplots()
 plt.tight_layout()
 plt.tick_params(axis='x', rotation=45)
@@ -189,6 +198,21 @@ plt.plot(daily_AQI_records_df['record_time'], daily_AQI_records_df['AQI_result']
 plt.xlabel('Time of recording')
 plt.ylabel('AQI score')
 st.pyplot(fig)
+
+# Year with the Highest Maximum AQI Score Recorded So Far
+yearly_AQI_max_records_df.index = yearly_AQI_max_records_df.index.strftime('%Y')
+yearly_AQI_max_records_df = yearly_AQI_max_records_df.reset_index()
+
+fig, ax = plt.subplots(figsize=(12,4))
+
+colors_max = ["#D3D3D3", "#D3D3D3", "#D3D3D3", "#FF6500", "#D3D3D3"]
+
+sns.barplot(x="AQI_result", y="record_time", data=yearly_AQI_max_records_df.head(), palette=colors_max)
+ax.set_ylabel(None)
+ax.set_xlabel(None)
+plt.tight_layout()
+ax.set_title("Highest Record of AQI Score (Year-on-Year)", loc="center", fontsize=15)
+ax.tick_params(axis ='y', labelsize=12)
 
 st.caption("Last time updated: 2017/02/28 23:00:00")
 
