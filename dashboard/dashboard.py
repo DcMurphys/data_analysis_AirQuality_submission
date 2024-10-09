@@ -276,7 +276,7 @@ with tab1:
 with tab2:
     # Sulphur Dioxide (SO2) 
     st.container()
-    st.subheader('Sulphur Dioxide (SO2)')
+    st.subheader('Sulphur Dioxide (SO2) Particle')
     # Sulphur Dioxide Particle 
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
@@ -299,7 +299,7 @@ with tab2:
 # NO2 Particle Tracking
 with tab3:
     st.container()
-    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2)')
+    st.subheader('Nitro Dioxide (NO2) Particle')
     # Nitro Dioxide (NO2)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
@@ -322,7 +322,7 @@ with tab3:
 # CO Particle Tracking 
 with tab4:
     st.container()
-    st.subheader('Carbon Monoxide (CO)')
+    st.subheader('Carbon Monoxide (CO) Particle')
     # Carbon Monoxide (CO)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
