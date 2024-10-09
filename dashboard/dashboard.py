@@ -200,20 +200,6 @@ plt.ylabel('AQI score')
 st.pyplot(fig)
 
 # Year with the Highest Maximum AQI Score Recorded So Far
-yearly_AQI_max_records_df.index = yearly_AQI_max_records_df.index.strftime('%Y')
-yearly_AQI_max_records_df = yearly_AQI_max_records_df.reset_index()
-
-fig, ax = plt.subplots(figsize=(12,4))
-
-colors_max = ["#D3D3D3", "#D3D3D3", "#D3D3D3", "#FF6500", "#D3D3D3"]
-
-sns.barplot(x="AQI_result", y="record_time", data=yearly_AQI_max_records_df.head(), palette=colors_max)
-ax.set_ylabel(None)
-ax.set_xlabel(None)
-plt.tight_layout()
-ax.set_title("Highest Record of AQI Score (Year-on-Year)", loc="center", fontsize=15)
-ax.tick_params(axis ='y', labelsize=12)
-
 st.caption("Last time updated: 2017/02/28 23:00:00")
 
 # Tabs for displaying data based on particles 
