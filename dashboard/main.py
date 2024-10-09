@@ -171,11 +171,11 @@ col1, col2, col3 = st.columns(3, gap="small")
 # AQI Metrics 
 with col1:
     AQI_result_median = round(daily_AQI_records_df.AQI_result.mean(), 1)
-    st.metric("8-hr Average AQI", value=AQI_result_median)
+    st.metric("8-hr Avg. AQI Score", value=AQI_result_median)
 
 with col2:
     AQI_result_peak = round(daily_AQI_max_records_df.AQI_result.max(), 2)
-    st.metric("Peak AQI", value=AQI_result_peak)
+    st.metric("Peak AQI Score", value=AQI_result_peak)
 
 with col3:
     AQI_result_status = get_AQI_status(AQI_result_median)
@@ -186,8 +186,8 @@ fig, ax = plt.subplots(figsize=(20,10))
 plt.tight_layout()
 plt.tick_params(axis='x', rotation=45)
 plt.plot(daily_AQI_records_df['record_time'], daily_AQI_records_df['AQI_result'])
-plt.xlabel('Month')
-plt.ylabel('Air Quality Index (AQI)')
+plt.xlabel('Day-to-Day')
+plt.ylabel('AQI score')
 st.pyplot(fig)
 
 st.caption(f"Last time updated: 2017/02/28 23:00:00")
@@ -214,8 +214,8 @@ with tab1:
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'])
-        plt.xlabel('Month')
-        plt.ylabel('Value')
+        plt.xlabel('Month-on-Month')
+        plt.ylabel('PM2.5 in µg/m3')
         st.pyplot(fig)
 
     elif pm2p5_or_pm10 == 'PM10':
@@ -226,8 +226,8 @@ with tab1:
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'])
-        plt.xlabel('Month')
-        plt.ylabel('Value')
+        plt.xlabel('Month-on-Month')
+        plt.ylabel('PM10 in µg/m3')
         st.pyplot(fig)
 
     else:
@@ -241,8 +241,8 @@ with tab1:
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'])
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'])
-        plt.xlabel('Month')
-        plt.ylabel('Value')
+        plt.xlabel('Month-on-Month')
+        plt.ylabel('Particulate Matter in µg/m3')
         st.pyplot(fig)
 
 
@@ -256,40 +256,40 @@ with tab2:
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'], daily_other_records_df['SO2'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_ylabel('SO2 particle')
+    ax.set_ylabel('SO2 particle in µg/m3')
     st.pyplot(fig)
 
     # AQI vs SO2 Correlation  
-    st.subheader('AQI vs. Sulphur Dioxide (SO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Sulphur Dioxide (SO2) (Day-to-Day)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_SO2_df['SO2'], daily_AQIresult_SO2_df['AQI_result'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_xlabel('SO2 particle')
-    ax.set_ylabel('Air Quality Index (AQI)')
+    ax.set_xlabel('SO2 particle in µg/m3')
+    ax.set_ylabel('AQI score')
     st.pyplot(fig)
 
 
 # NO2 Particle Tracking
 with tab3:
     st.container()
-    st.subheader('AQI vs. Nitro Dioxide (NO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2) (Day-to-Day)')
     # Nitro Dioxide (NO2) (Day-to-Day)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['NO2'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_ylabel('NO2 particle')
+    ax.set_ylabel('NO2 particle in µg/m3')
     st.pyplot(fig)
 
     # AQI vs NO2 Correlation 
-    st.subheader('AQI vs. Nitro Dioxide (NO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2) (Day-to-Day)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_NO2_df['NO2'],daily_AQIresult_NO2_df['AQI_result'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_xlabel('NO2 particle')
-    ax.set_ylabel('Air Quality Index (AQI)')
+    ax.set_xlabel('NO2 particle in µg/m3')
+    ax.set_ylabel('AQI score')
     st.pyplot(fig)
 
 
@@ -302,16 +302,16 @@ with tab4:
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['CO'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_ylabel('CO particle')
+    ax.set_ylabel('CO particle in µg/m3')
     st.pyplot(fig)
 
     # AQI vs CO Correlation 
-    st.subheader('AQI vs. Carbon Monoxide (NO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Carbon Monoxide (NO2) (Day-to-Day)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_CO_df['CO'],daily_AQIresult_CO_df['AQI_result'])
     ax.tick_params(axis='x', rotation=45)
-    ax.set_xlabel('CO particle')
-    ax.set_ylabel('Air Quality Index (AQI)')
+    ax.set_xlabel('CO particle in µg/m3')
+    ax.set_ylabel('AQI score')
     st.pyplot(fig)
 
