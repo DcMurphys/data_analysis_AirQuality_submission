@@ -251,7 +251,7 @@ with tab2:
     # Sulphur Dioxide (SO2) 
     st.container()
     st.subheader('Sulphur Dioxide (SO2)')
-    # Sulphur Dioxide Particle (Day-to-Day)
+    # Sulphur Dioxide Particle 
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'], daily_other_records_df['SO2'])
