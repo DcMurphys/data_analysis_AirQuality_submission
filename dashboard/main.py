@@ -233,28 +233,16 @@ with tab1:
     else:
         st.header("PM2.5 and PM10 Particle")
 
-        columns_plot = ['PM2p5','PM10']
-
         fig, ax = plt.subplots(figsize=(20,10))
-        plt.legend(loc='upper left', labels=['PM2.5','PM10'])
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
-        plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'])
-        plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'])
+        plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'], label='PM2.5')
+        plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'], label='PM10')
         plt.xlabel('Time of recording')
         plt.ylabel('Particulate Matter in µg/m3')
+        plt.legend()
         st.pyplot(fig)
 
-        fig, ax = plt.subplots(figsize=(15,5))
-        ax.yaxis.set_major_formatter(ticker.EngFormatter())
-        for each in columns_plot:
-            sns.lineplot(data=monthly_record_df, x='record_time', y=each, label=str(each), errorbar=None)
-        plt.legend(loc='upper left', labels=['PM2.5','PM10'])
-        plt.tight_layout()
-        plt.tick_params(axis='x', rotation=45)
-        plt.xlabel('Month-on-Month')
-        plt.ylabel('Particulate Matter Score in µg/m3')
-        plt.show()
 
 
 # SO2 Particle Tracking
