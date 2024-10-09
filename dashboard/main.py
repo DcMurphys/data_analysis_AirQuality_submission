@@ -160,12 +160,12 @@ st.title('Air Quality Monitoring Dashboard')
 
 
 # Dashboard Description
-st.caption('''Welcome to the Air Quality Monitoring Dashboard App! This app will help you in monitoring the Air Quality Index (AQI) based on particles like PM2.5, PM10, Sulphur Dioxide (SO2), Nitro Dioxide (NO2), and Carbon Monoxide (CO). The dataset contained in this app have been obtained and analyzed from 12 different stations in China. Determining the AQI status in this app is based on AQI Measuring Standard enforced in China.
+st.caption('''Welcome to the Air Quality Monitoring Dashboard App! This app will help you in monitoring the Air Quality Index (AQI) score based on particles like PM2.5, PM10, Sulphur Dioxide (SO2), Nitro Dioxide (NO2), and Carbon Monoxide (CO). The dataset contained in this app have been obtained and analyzed from 12 different stations in China. Determining the AQI status in this app is based on AQI Measuring Standard enforced in China.
 ''')
 
 
 # Air Quality Index (AQI) Tracking
-st.header("Air Quality Index (AQI) (Day-to-Day)")
+st.header("Air Quality Index (AQI) Score")
 col1, col2, col3 = st.columns(3, gap="small")
 
 # AQI Metrics 
@@ -186,7 +186,7 @@ fig, ax = plt.subplots(figsize=(20,10))
 plt.tight_layout()
 plt.tick_params(axis='x', rotation=45)
 plt.plot(daily_AQI_records_df['record_time'], daily_AQI_records_df['AQI_result'])
-plt.xlabel('Day-to-Day')
+plt.xlabel('Time of recording')
 plt.ylabel('AQI score')
 st.pyplot(fig)
 
@@ -207,31 +207,31 @@ with tab1:
     )
     # Filter based on PM2.5, PM10, and/or both
     if pm2p5_or_pm10 == 'PM2.5':
-        st.header("PM2.5-only Particle (Day-to-Day)")
+        st.header("PM2.5-only Particle")
         
         fig, ax = plt.subplots(figsize=(20,10))
         plt.legend(loc='upper left', labels=['PM2.5','PM10'])
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'])
-        plt.xlabel('Month-on-Month')
+        plt.xlabel('Time of recording')
         plt.ylabel('PM2.5 in µg/m3')
         st.pyplot(fig)
 
     elif pm2p5_or_pm10 == 'PM10':
-        st.header("PM10-only Particle (Day-to-Day)")
+        st.header("PM10-only Particle")
 
         fig, ax = plt.subplots(figsize=(20,10))
         plt.legend(loc='upper left', labels=['PM2.5','PM10'])
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'])
-        plt.xlabel('Month-on-Month')
+        plt.xlabel('Time of recording')
         plt.ylabel('PM10 in µg/m3')
         st.pyplot(fig)
 
     else:
-        st.header("PM2.5 and PM10 Particle (Day-to-Day)")
+        st.header("PM2.5 and PM10 Particle")
 
         columns_plot = ['PM2p5','PM10']
 
@@ -241,16 +241,16 @@ with tab1:
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'])
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM10'])
-        plt.xlabel('Month-on-Month')
+        plt.xlabel('Time of recording')
         plt.ylabel('Particulate Matter in µg/m3')
         st.pyplot(fig)
 
 
 # SO2 Particle Tracking
 with tab2:
-    # Sulphur Dioxide (SO2) (Day-to-Day)
+    # Sulphur Dioxide (SO2) 
     st.container()
-    st.subheader('Sulphur Dioxide (SO2) (Day-to-Day)')
+    st.subheader('Sulphur Dioxide (SO2)')
     # Sulphur Dioxide Particle (Day-to-Day)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
@@ -260,7 +260,7 @@ with tab2:
     st.pyplot(fig)
 
     # AQI vs SO2 Correlation  
-    st.subheader('Air Quality Index (AQI) vs. Sulphur Dioxide (SO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Sulphur Dioxide (SO2)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_SO2_df['SO2'], daily_AQIresult_SO2_df['AQI_result'])
@@ -273,8 +273,8 @@ with tab2:
 # NO2 Particle Tracking
 with tab3:
     st.container()
-    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2) (Day-to-Day)')
-    # Nitro Dioxide (NO2) (Day-to-Day)
+    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2)')
+    # Nitro Dioxide (NO2)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['NO2'])
@@ -283,7 +283,7 @@ with tab3:
     st.pyplot(fig)
 
     # AQI vs NO2 Correlation 
-    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Nitro Dioxide (NO2)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_NO2_df['NO2'],daily_AQIresult_NO2_df['AQI_result'])
@@ -296,8 +296,8 @@ with tab3:
 # CO Particle Tracking 
 with tab4:
     st.container()
-    st.subheader('Carbon Monoxide (CO) (Day-to-Day)')
-    # Carbon Monoxide (CO) (Day-to-Day)
+    st.subheader('Carbon Monoxide (CO)')
+    # Carbon Monoxide (CO)
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['CO'])
@@ -306,7 +306,7 @@ with tab4:
     st.pyplot(fig)
 
     # AQI vs CO Correlation 
-    st.subheader('Air Quality Index (AQI) vs. Carbon Monoxide (NO2) (Day-to-Day)')
+    st.subheader('Air Quality Index (AQI) vs. Carbon Monoxide (NO2)')
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_CO_df['CO'],daily_AQIresult_CO_df['AQI_result'])
