@@ -182,7 +182,7 @@ with col3:
     st.metric("Overall Status", value=AQI_result_status)
 
 
-fig, ax = plt.subplots(figsize=(20,10))
+fig, ax = plt.subplots()
 plt.tight_layout()
 plt.tick_params(axis='x', rotation=45)
 plt.plot(daily_AQI_records_df['record_time'], daily_AQI_records_df['AQI_result'])
@@ -209,7 +209,7 @@ with tab1:
     if pm2p5_or_pm10 == 'PM2.5':
         st.header("PM2.5-only Particle")
         
-        fig, ax = plt.subplots(figsize=(20,10))
+        fig, ax = plt.subplots()
         plt.legend(loc='upper left', labels=['PM2.5','PM10'])
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
@@ -221,7 +221,7 @@ with tab1:
     elif pm2p5_or_pm10 == 'PM10':
         st.header("PM10-only Particle")
 
-        fig, ax = plt.subplots(figsize=(20,10))
+        fig, ax = plt.subplots()
         plt.legend(loc='upper left', labels=['PM2.5','PM10'])
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
@@ -233,7 +233,7 @@ with tab1:
     else:
         st.header("PM2.5 and PM10 Particle")
 
-        fig, ax = plt.subplots(figsize=(20,10))
+        fig, ax = plt.subplots()
         plt.tight_layout()
         plt.tick_params(axis='x', rotation=45)
         plt.plot(daily_PM_records_df['record_time'], daily_PM_records_df['PM2.5'], label='PM2.5')
@@ -263,7 +263,6 @@ with tab2:
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_SO2_df['SO2'], daily_AQIresult_SO2_df['AQI_result'])
-    ax.tick_params(axis='x', rotation=45)
     ax.set_xlabel('SO2 particle in µg/m3')
     ax.set_ylabel('AQI score')
     st.pyplot(fig)
@@ -286,7 +285,6 @@ with tab3:
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_NO2_df['NO2'],daily_AQIresult_NO2_df['AQI_result'])
-    ax.tick_params(axis='x', rotation=45)
     ax.set_xlabel('NO2 particle in µg/m3')
     ax.set_ylabel('AQI score')
     st.pyplot(fig)
@@ -309,7 +307,6 @@ with tab4:
     fig, ax = plt.subplots()
     colors = ['FF6500', '1E3E62']
     ax.scatter(daily_AQIresult_CO_df['CO'],daily_AQIresult_CO_df['AQI_result'])
-    ax.tick_params(axis='x', rotation=45)
     ax.set_xlabel('CO particle in µg/m3')
     ax.set_ylabel('AQI score')
     st.pyplot(fig)
