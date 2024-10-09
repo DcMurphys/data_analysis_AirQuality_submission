@@ -99,7 +99,10 @@ def create_yearly_AQI_max_records_df(df):
     yearly_AQI_max_records_df = df.resample(rule='Y', on='record_time').agg({
         "station" : "nunique",
         "AQI_result" : "max"
-    }).reset_index()
+    })
+
+    yearly_AQI_max_records_df.index = yearly_AQI_max_records_df.index.strftime('%Y')
+    yearly_AQI_max_records_df = yearly_AQI_max_records_df.reset_index()
 
     return yearly_AQI_max_records_df 
 
@@ -199,13 +202,7 @@ plt.xlabel('Time of recording')
 plt.ylabel('AQI score')
 st.pyplot(fig)
 
-# Year with the Highest Maximum AQI Score Recorded So Far
-st.caption("Last time updated: 2017/02/28 23:00:00")
-
-# Tabs for displaying data based on particles 
-yearly_AQI_max_records_df.index = yearly_AQI_max_records_df.index.strftime('%Y')
-yearly_AQI_max_records_df = yearly_AQI_max_records_df.reset_index()
-
+# Year with the Highest Record of AQI Score So Far
 fig, ax = plt.subplots()
 
 colors_max = ["#D3D3D3", "#D3D3D3", "#D3D3D3", "#FF6500", "#D3D3D3"]
@@ -220,7 +217,10 @@ ax.tick_params(axis ='y', labelsize=12)
 st.pyplot(fig)
 
 
-# Create Variables Describing Tabs 
+# Caption for displaying latest update time 
+st.caption("Last time updated: 2017/02/28 23:00:00")
+
+# Tabs for displaying data based on particles 
 tab1, tab2, tab3, tab4 = st.tabs(['PM2.5 and PM10', 'Sulphur Dioxide (SO2)', 'Nitro Dioxide (NO2)', 'Carbon Monoxide (CO)'])
 
 # PM2.5 and PM10 Particle Tracking 
@@ -270,7 +270,6 @@ with tab1:
         plt.ylabel('Particulate Matter in µg/m3')
         plt.legend()
         st.pyplot(fig)
-
 
 
 # SO2 Particle Tracking
