@@ -190,7 +190,7 @@ plt.xlabel('Time of recording')
 plt.ylabel('AQI score')
 st.pyplot(fig)
 
-st.caption(f"Last time updated: 2017/02/28 23:00:00")
+st.caption("Last time updated: 2017/02/28 23:00:00")
 
 # Tabs for displaying data based on particles 
 tab1, tab2, tab3, tab4 = st.tabs(['PM2.5 and PM10', 'Sulphur Dioxide (SO2)', 'Nitro Dioxide (NO2)', 'Carbon Monoxide (CO)'])
@@ -255,6 +255,7 @@ with tab2:
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'], daily_other_records_df['SO2'])
     ax.tick_params(axis='x', rotation=45)
+    ax.set_xlabel('Time of recording')
     ax.set_ylabel('SO2 particle in µg/m3')
     st.pyplot(fig)
 
@@ -277,6 +278,7 @@ with tab3:
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['NO2'])
     ax.tick_params(axis='x', rotation=45)
+    ax.set_xlabel('Time of recording')
     ax.set_ylabel('NO2 particle in µg/m3')
     st.pyplot(fig)
 
@@ -299,6 +301,7 @@ with tab4:
     colors = ['FF6500', '1E3E62']
     ax.plot(daily_other_records_df['record_time'],daily_other_records_df['CO'])
     ax.tick_params(axis='x', rotation=45)
+    ax.set_xlabel('Time of recording')
     ax.set_ylabel('CO particle in µg/m3')
     st.pyplot(fig)
 
